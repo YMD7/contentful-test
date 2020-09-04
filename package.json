@@ -13,6 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "contentful": "^7.14.6",
     "dotenv": "^8.2.0",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.3.2"
