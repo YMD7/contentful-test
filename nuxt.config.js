@@ -1,8 +1,16 @@
-export default {
+const config = require('./.contentful.json')
+
+module.exports = {
   mode: 'universal',
   /*
    ** Headers of the page
    */
+  env: {
+    CTF_SPACE_ID: config.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
+    CTF_PERSON_ID: config.CTF_PERSON_ID,
+    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -39,9 +47,16 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy'
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv'
   ],
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {},
   /*
    ** Build configuration
    */

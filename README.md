@@ -1,6 +1,6 @@
 # contentful-test
 
-> My slick Nuxt.js project
+> My supreme Nuxt.js project
 
 ## Build Setup
 

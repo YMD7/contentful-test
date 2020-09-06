@@ -1,46 +1,76 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-      <card title="Free" icon="github-circle">
-        Open source on
-        <a href="https://github.com/buefy/buefy">
-          GitHub
-        </a>
-      </card>
-
-      <card title="Responsive" icon="cellphone-link">
-        <b class="has-text-grey">
-          Every
-        </b>
-        component is responsive
-      </card>
-
-      <card title="Modern" icon="alert-decagram">
-        Built with
-        <a href="https://vuejs.org/">
-          Vue.js
-        </a>
-        and
-        <a href="http://bulma.io/">
-          Bulma
-        </a>
-      </card>
-
-      <card title="Lightweight" icon="arrange-bring-to-front">
-        No other internal dependency
-      </card>
-    </div>
-  </section>
+  <div class="container">
+    <!-- render data of the person -->
+    <h1>{{ person.fields.name }}</h1>
+    <!-- render blog posts -->
+    <ul>
+      <li v-for="post in posts">
+        {{ post.fields.title }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import Card from '~/components/Card'
+import { createClient } from '~/plugins/contentful.js'
+
+const client = createClient()
 
 export default {
-  name: 'HomePage',
-
-  components: {
-    Card
+  asyncData({ env }) {
+    return Promise.all([
+      // fetch the owner of the blog
+      client.getEntries({
+        'sys.id': env.CTF_PERSON_ID
+      }),
+      // fetch all blog posts sorted by creation date
+      client.getEntries({
+        content_type: env.CTF_BLOG_POST_TYPE_ID,
+        order: '-sys.createdAt'
+      })
+    ])
+      .then(([entries, posts]) => {
+        // return data that should be available
+        // in the template
+        return {
+          person: entries.items[0],
+          posts: posts.items
+        }
+      })
+      .catch(console.error)
   }
 }
 </script>
+
+<style>
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.links {
+  padding-top: 15px;
+}
+</style>
