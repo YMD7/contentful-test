@@ -13,15 +13,12 @@
     "test": "jest"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "contentful": "^7.14.6",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "nuxt": "^2.0.0"
->>>>>>> e8463ca... finish: contentful nuxt-tutorial
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
