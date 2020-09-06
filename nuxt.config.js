@@ -1,16 +1,8 @@
-const config = require('./.contentful.json')
-
 module.exports = {
   mode: 'universal',
   /*
    ** Headers of the page
    */
-  env: {
-    CTF_SPACE_ID: config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
-    CTF_PERSON_ID: config.CTF_PERSON_ID,
-    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID
-  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -64,6 +56,10 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      config.node = {
+        fs: 'empty'
+      }
+    }
   }
 }

@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const contentful = require('contentful')
 // use default environment config for convenience
 // these will be set via `env` property in nuxt.config.js
