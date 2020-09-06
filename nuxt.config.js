@@ -1,4 +1,7 @@
-module.exports = {
+<<<<<<< HEAD
+=======
+export default {
+>>>>>>> parent of 108b5e3... finish: contentful nuxt-tutorial
   mode: 'universal',
   /*
    ** Headers of the page
@@ -39,16 +42,9 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    // Doc: https://buefy.github.io/#/documentation
+    'nuxt-buefy'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
   /*
    ** Build configuration
    */
